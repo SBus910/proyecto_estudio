@@ -1,0 +1,356 @@
+/* ==========================================================================
+   Variables de diseño y estilos globales
+   ========================================================================== */
+:root {
+  --color-fondo: #f4f6fb;
+  --color-superficie: #ffffff;
+  --color-primario: #3b82f6;
+  --color-primario-hover: #2563eb;
+  --color-texto: #1e293b;
+  --color-texto-secundario: #64748b;
+  --color-borde: #e2e8f0;
+  --color-racha-fondo: #fff7ed;
+  --color-racha-borde: #ffedd5;
+  --color-racha-texto: #ea580c;
+  --radio-borde: 14px;
+  --sombra-suave: 0 4px 16px rgba(15, 23, 42, 0.05);
+  --sombra-hover: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --fuente: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.5;
+  padding: 24px 16px 48px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Contenedor centralizado para móvil y escritorio */
+.contenedor {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Encabezado */
+.encabezado {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.encabezado h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.subtitulo {
+  color: var(--color-texto-secundario);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* Estilos de las tarjetas */
+.tarjeta {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 24px;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Tarjeta destacada de Rachas (Actual y Mejor racha) */
+.tarjeta-rachas {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border: 1px solid var(--color-racha-borde);
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.bloque-racha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.divisor-racha {
+  width: 1px;
+  height: 60px;
+  background-color: rgba(234, 88, 12, 0.2);
+}
+
+.icono-racha {
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(234, 88, 12, 0.2));
+  animation: pulsoSuave 2.5s infinite ease-in-out;
+}
+
+.icono-mejor-racha {
+  filter: drop-shadow(0 4px 8px rgba(202, 138, 4, 0.25));
+  animation: none;
+}
+
+.contenido-racha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.etiqueta-racha {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-racha-texto);
+}
+
+.numero-racha {
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1.05;
+  color: #9a3412;
+  margin: 2px 0;
+}
+
+.numero-mejor-racha {
+  color: #b45309;
+}
+
+.texto-dias {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c2410c;
+}
+
+/* Formulario */
+.tarjeta-formulario h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #0f172a;
+}
+
+#formularioSesion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.campo input {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-borde);
+  border-radius: 8px;
+  background-color: #fff;
+  color: var(--color-texto);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.campo input::placeholder {
+  color: #94a3b8;
+}
+
+/* Botón de guardar */
+.boton-guardar {
+  font-family: inherit;
+  background-color: var(--color-primario);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  margin-top: 4px;
+}
+
+.boton-guardar:hover {
+  background-color: var(--color-primario-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.boton-guardar:active {
+  transform: scale(0.98);
+}
+
+/* Sección de historial */
+.seccion-historial {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.seccion-historial h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.lista-sesiones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tarjeta individual de sesión */
+.item-sesion {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.item-sesion:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-hover);
+}
+
+.info-sesion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tema-sesion {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  word-break: break-word;
+}
+
+.fecha-sesion {
+  font-size: 0.85rem;
+  color: var(--color-texto-secundario);
+}
+
+.tiempo-sesion {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Estado vacío cuando no hay sesiones */
+.estado-vacio {
+  background-color: var(--color-superficie);
+  border: 1.5px dashed var(--color-borde);
+  border-radius: 12px;
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--color-texto-secundario);
+  font-size: 0.95rem;
+}
+
+/* Animación sutil de la llama */
+@keyframes pulsoSuave {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+/* Ajustes adaptables para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 12px 36px;
+  }
+
+  .encabezado h1 {
+    font-size: 1.5rem;
+  }
+
+  .tarjeta {
+    padding: 18px 16px;
+  }
+
+  .tarjeta-rachas {
+    flex-direction: row;
+    gap: 8px;
+    padding: 16px 10px;
+  }
+
+  .bloque-racha {
+    gap: 8px;
+  }
+
+  .divisor-racha {
+    height: 48px;
+  }
+
+  .icono-racha {
+    font-size: 2.25rem;
+  }
+
+  .numero-racha {
+    font-size: 2.1rem;
+  }
+
+  .etiqueta-racha {
+    font-size: 0.72rem;
+  }
+
+  .texto-dias {
+    font-size: 0.8rem;
+  }
+
+  .item-sesion {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .tiempo-sesion {
+    align-self: flex-start;
+  }
+}

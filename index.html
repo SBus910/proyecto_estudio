@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diario de Estudio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <div class="contenedor">
+
+    <!-- Encabezado principal -->
+    <header class="encabezado">
+      <h1>Diario de Estudio</h1>
+      <p class="subtitulo">Registra tu progreso y mantén tu constancia día a día</p>
+    </header>
+
+    <main>
+      <!-- Tarjeta destacada de rachas -->
+      <section class="tarjeta tarjeta-rachas" aria-label="Estadísticas de rachas">
+        <!-- Racha actual -->
+        <div class="bloque-racha">
+          <span class="icono-racha" aria-hidden="true">🔥</span>
+          <div class="contenido-racha">
+            <span class="etiqueta-racha">Racha actual</span>
+            <div class="numero-racha" id="contadorRacha">0</div>
+            <span class="texto-dias" id="textoDias">días seguidos</span>
+          </div>
+        </div>
+
+        <div class="divisor-racha" aria-hidden="true"></div>
+
+        <!-- Mejor racha histórica -->
+        <div class="bloque-racha">
+          <span class="icono-racha icono-mejor-racha" aria-hidden="true">🏆</span>
+          <div class="contenido-racha">
+            <span class="etiqueta-racha">Mejor racha</span>
+            <div class="numero-racha numero-mejor-racha" id="contadorMejorRacha">0</div>
+            <span class="texto-dias" id="textoDiasMejor">récord de días</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Formulario para añadir sesión -->
+      <section class="tarjeta tarjeta-formulario">
+        <h2>Registrar nueva sesión</h2>
+        <form id="formularioSesion" novalidate>
+          <div class="campo">
+            <label for="campoFecha">Fecha</label>
+            <input type="date" id="campoFecha" name="fecha" required>
+          </div>
+
+          <div class="campo">
+            <label for="campoTema">Tema estudiado</label>
+            <input type="text" id="campoTema" name="tema" placeholder="Ej. Funciones en JavaScript, Python, Java..."
+              required>
+          </div>
+
+          <div class="campo">
+            <label for="campoMinutos">Tiempo dedicado (minutos)</label>
+            <input type="number" id="campoMinutos" name="minutos" min="1" placeholder="Ej. 45" required>
+          </div>
+
+          <button type="submit" class="boton-guardar" id="botonGuardar">
+            Guardar sesión
+          </button>
+        </form>
+      </section>
+
+      <!-- Lista con el historial de sesiones -->
+      <section class="seccion-historial">
+        <h2>Historial de sesiones</h2>
+        <div id="listaSesiones" class="lista-sesiones" aria-live="polite">
+          <!-- Las sesiones se insertan dinámicamente con app.js -->
+        </div>
+      </section>
+    </main>
+
+  </div>
+</body>
+
+</html>
