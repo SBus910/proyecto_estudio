@@ -16,6 +16,9 @@ const contadorRacha = document.getElementById("contadorRacha");
 const textoDias = document.getElementById("textoDias");
 const contadorMejorRacha = document.getElementById("contadorMejorRacha");
 const textoDiasMejor = document.getElementById("textoDiasMejor");
+const valorTiempoTotal = document.getElementById("valorTiempoTotal");
+const valorTotalSesiones = document.getElementById("valorTotalSesiones");
+const valorDiasMes = document.getElementById("valorDiasMes");
 const listaSesiones = document.getElementById("listaSesiones");
 
 // -----------------------------------------------------------------------------
@@ -202,6 +205,62 @@ function renderizarRacha(sesiones) {
 }
 
 /**
+ * Convierte un total de minutos en formato legible (ej. "45 min", "2 h", "2 h 15 min").
+ */
+function formatearMinutosLegibles(totalMinutos) {
+  if (!totalMinutos || totalMinutos <= 0) return "0 min";
+  if (totalMinutos < 60) return `${totalMinutos} min`;
+
+  const horas = Math.floor(totalMinutos / 60);
+  const minutosRestantes = totalMinutos % 60;
+
+  if (minutosRestantes === 0) {
+    return `${horas} h`;
+  }
+  return `${horas} h ${minutosRestantes} min`;
+}
+
+/**
+ * Calcula las estadísticas globales a partir de las sesiones existentes.
+ * - totalMinutos: suma de minutos acumulados en todas las sesiones.
+ * - totalSesiones: número total de sesiones registradas.
+ * - diasEsteMes: días únicos estudiados en el mes en curso (hora local del usuario).
+ */
+function calcularEstadisticas(sesiones) {
+  const totalSesiones = sesiones.length;
+  const totalMinutos = sesiones.reduce((acumulado, sesion) => {
+    return acumulado + (Number(sesion.minutos) || 0);
+  }, 0);
+
+  // Conteo de días del mes en curso respetando la skill local-dates:
+  // 1. Fecha local de hoy en formato "AAAA-MM-DD"
+  const hoyTexto = obtenerFechaLocalTexto();
+  const prefijoMesActual = hoyTexto.slice(0, 7); // "AAAA-MM"
+
+  // 2. Filtramos sesiones del mes actual y descartamos fechas futuras (s.fecha <= hoyTexto)
+  // 3. Usamos Set para asegurar que varias sesiones el mismo día cuenten como 1 solo día
+  const diasUnicosMes = new Set(
+    sesiones
+      .filter((s) => s.fecha.startsWith(prefijoMesActual) && s.fecha <= hoyTexto)
+      .map((s) => s.fecha)
+  );
+
+  const diasEsteMes = diasUnicosMes.size;
+
+  return { totalMinutos, totalSesiones, diasEsteMes };
+}
+
+/**
+ * Actualiza los valores del panel de estadísticas globales en la interfaz.
+ */
+function renderizarEstadisticas(sesiones) {
+  const { totalMinutos, totalSesiones, diasEsteMes } = calcularEstadisticas(sesiones);
+  valorTiempoTotal.textContent = formatearMinutosLegibles(totalMinutos);
+  valorTotalSesiones.textContent = totalSesiones;
+  valorDiasMes.textContent = diasEsteMes;
+}
+
+/**
  * Renderiza la lista de sesiones ordenadas de la más reciente a la más antigua.
  */
 function renderizarSesiones(sesiones) {
@@ -211,7 +270,7 @@ function renderizarSesiones(sesiones) {
   if (sesiones.length === 0) {
     listaSesiones.innerHTML = `
       <div class="estado-vacio">
-        No hay sesiones registradas aún. ¡Añade tu primera sesión para comenzar tu racha!
+        El pergamino aguarda en blanco. ¡Inscribe tu primera vigilia de estudio para encender el fuego sagrado!
       </div>
     `;
     return;
@@ -301,6 +360,7 @@ function manejarEnvioFormulario(evento) {
 
   // Actualizamos la interfaz
   renderizarRacha(sesiones);
+  renderizarEstadisticas(sesiones);
   renderizarSesiones(sesiones);
 
   // Limpiamos los campos del formulario pero dejamos la fecha de hoy lista
@@ -324,6 +384,7 @@ function iniciarApp() {
   // Cargamos los datos guardados y los mostramos en pantalla
   const sesiones = cargarSesiones();
   renderizarRacha(sesiones);
+  renderizarEstadisticas(sesiones);
   renderizarSesiones(sesiones);
 }
 

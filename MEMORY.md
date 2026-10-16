@@ -1,14 +1,20 @@
 # Memoria del Proyecto: Diario de Estudio
 
 ## Estado actual
-- **Versión 1 operativa:** Registro de sesiones (fecha, tema, minutos), cálculo de racha actual, listado cronológico inverso y persistencia de datos en `localStorage`.
-- **Nueva funcionalidad (Mejor racha):** Se agregó el cálculo de la "Mejor racha" histórica (récord de días consecutivos), mostrándola junto a la racha actual en la interfaz.
+- **Registro y persistencia:** Formulario para registrar sesiones (fecha local, tema, minutos), listado cronológico inverso y almacenamiento en `localStorage`.
+- **Rachas:** Tarjeta con racha actual (🔥) y mejor racha histórica (🏆).
+- **Diseño visual:** Rediseño temático *Grimorio de Estudio* (medieval fantástico) aplicando la skill `frontend-design`.
+- **Skills del proyecto:**
+  - `local-dates`: `.agents/skills/local-dates/SKILL.md` (reglas y checklist de fechas locales).
+  - `frontend-design`: `.agents/skills/frontend-design/SKILL.md` (metodología y principios de diseño y UI intencional).
 
 ## Decisiones importantes y porqué
-- **Cálculo al vuelo vs campo guardado:** La "Mejor racha" se calcula dinámicamente en tiempo de ejecución a partir del array de sesiones. Esto evita romper la compatibilidad con los datos existentes en `localStorage` y previene inconsistencias si el usuario registra sesiones pasadas o altera los datos.
-- **Manejo de fechas:** Se utiliza una función auxiliar `crearFechaLocal(fechaTexto)` que instancia `Date(anio, mes - 1, dia)` (medianoche local). Esto asegura que los cálculos de diferencia de días sean precisos y evita desfases horarios (UTC) causados por funciones nativas como `toISOString()`.
-- **Diseño UI:** La tarjeta principal se dividió para mostrar "Racha actual 🔥" y "Mejor racha 🏆" lado a lado, manteniendo un diseño limpio y adaptable a dispositivos móviles.
+- **Rediseño Medieval Fantástico (Grimorio):** Diseñado con un punto de vista distintivo (fondo piedra de templo, pergamino oscuro, detalles en oro arcano y rubí de lacre), tipografías Cinzel y MedievalSharp, evitando los clichés comunes de UI genéricas de IA.
+- **Skill dedicada para fechas (`local-dates`):** Estandarización de reglas estrictas de fecha local y checklist obligatorio.
+- **Cálculo al vuelo sin alterar localStorage:** Tanto la "Mejor racha" como las "Estadísticas globales" se calculan dinámicamente en tiempo de ejecución a partir del array de sesiones para máxima compatibilidad.
+- **Manejo de fechas locales:** Se utiliza `crearFechaLocal(fechaTexto)` con `Date(anio, mes - 1, dia)` en hora local.
+- **Formato amigable de tiempo:** Los minutos acumulados se convierten a `"X h Y min"` (o `"X h"` si minutos son 0).
 
 ## Errores a evitar
-- **No usar métodos UTC para fechas:** Trabajar siempre extrayendo año, mes y día de forma explícita para evitar que una fecha se asigne al día anterior por la zona horaria del usuario.
-- **No romper la estructura de localStorage:** Cualquier nueva métrica debe calcularse a partir de la estructura `{ date, topic, minutes }` original si es posible, para no perder los datos del usuario.
+- **No usar métodos UTC para fechas:** No usar `toISOString()` ni `new Date("AAAA-MM-DD")`.
+- **No romper la estructura de localStorage:** Mantener `{ id, fecha, tema, minutos }` sin añadir claves redundantes.

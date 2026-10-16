@@ -4,80 +4,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diario de Estudio</title>
+  <title>Grimorio de Estudio — Crónica de Aprendizaje</title>
+  <!-- Fuentes medievales/fantásticas legibles de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=MedievalSharp&family=Metamorphous&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
 </head>
 
 <body>
-  <div class="contenedor">
+  <div class="pergamino-contenedor">
 
-    <!-- Encabezado principal -->
-    <header class="encabezado">
-      <h1>Diario de Estudio</h1>
-      <p class="subtitulo">Registra tu progreso y mantén tu constancia día a día</p>
+    <!-- Encabezado del Grimorio -->
+    <header class="encabezado-grimorio">
+      <div class="emblema-arcano" aria-hidden="true">⚔️ ✦ 📖 ✦ ⚔️</div>
+      <h1>Grimorio de Estudio</h1>
+      <p class="subtitulo">Registro de saberes arcanos y constancia de tus hazañas</p>
     </header>
 
     <main>
-      <!-- Tarjeta destacada de rachas -->
-      <section class="tarjeta tarjeta-rachas" aria-label="Estadísticas de rachas">
-        <!-- Racha actual -->
+      <!-- Tarjeta destacada: Fuego sagrado y Récord de gloria -->
+      <section class="tarjeta-relicario tarjeta-rachas" aria-label="Rachas de estudio">
+        <!-- Racha viva / Fuego de constancia -->
         <div class="bloque-racha">
-          <span class="icono-racha" aria-hidden="true">🔥</span>
+          <span class="icono-reliquia llama-arcana" aria-hidden="true">🔥</span>
           <div class="contenido-racha">
-            <span class="etiqueta-racha">Racha actual</span>
-            <div class="numero-racha" id="contadorRacha">0</div>
+            <span class="etiqueta-relicario">Fuego de racha</span>
+            <div class="numero-runa" id="contadorRacha">0</div>
             <span class="texto-dias" id="textoDias">días seguidos</span>
           </div>
         </div>
 
-        <div class="divisor-racha" aria-hidden="true"></div>
+        <div class="reja-divisoria" aria-hidden="true"></div>
 
-        <!-- Mejor racha histórica -->
+        <!-- Mayor hazaña histórica -->
         <div class="bloque-racha">
-          <span class="icono-racha icono-mejor-racha" aria-hidden="true">🏆</span>
+          <span class="icono-reliquia caliz-gloria" aria-hidden="true">🏆</span>
           <div class="contenido-racha">
-            <span class="etiqueta-racha">Mejor racha</span>
-            <div class="numero-racha numero-mejor-racha" id="contadorMejorRacha">0</div>
+            <span class="etiqueta-relicario">Mayor hazaña</span>
+            <div class="numero-runa numero-gloria" id="contadorMejorRacha">0</div>
             <span class="texto-dias" id="textoDiasMejor">récord de días</span>
           </div>
         </div>
       </section>
 
-      <!-- Formulario para añadir sesión -->
-      <section class="tarjeta tarjeta-formulario">
-        <h2>Registrar nueva sesión</h2>
+      <!-- Panel de Tributos y Estadísticas Arcanas -->
+      <section class="tarjeta-relicario tarjeta-estadisticas" aria-label="Compendio de estadísticas">
+        <div class="item-estadistica">
+          <span class="icono-grimorio" aria-hidden="true">⏳</span>
+          <div class="datos-estadistica">
+            <span class="etiqueta-relicario">Tiempo consagrado</span>
+            <strong class="valor-runico" id="valorTiempoTotal">0 min</strong>
+          </div>
+        </div>
+
+        <div class="reja-divisoria" aria-hidden="true"></div>
+
+        <div class="item-estadistica">
+          <span class="icono-grimorio" aria-hidden="true">📜</span>
+          <div class="datos-estadistica">
+            <span class="etiqueta-relicario">Vigilias cumplidas</span>
+            <strong class="valor-runico" id="valorTotalSesiones">0</strong>
+          </div>
+        </div>
+
+        <div class="reja-divisoria" aria-hidden="true"></div>
+
+        <div class="item-estadistica">
+          <span class="icono-grimorio" aria-hidden="true">🌙</span>
+          <div class="datos-estadistica">
+            <span class="etiqueta-relicario">Lunas este mes</span>
+            <strong class="valor-runico" id="valorDiasMes">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pupitre de Escritura: Formulario de Registro -->
+      <section class="tarjeta-relicario tarjeta-formulario">
+        <div class="cabecera-tomo">
+          <span class="floron" aria-hidden="true">❦</span>
+          <h2>Inscribir nuevo aprendizaje</h2>
+          <span class="floron" aria-hidden="true">❦</span>
+        </div>
+        
         <form id="formularioSesion" novalidate>
-          <div class="campo">
-            <label for="campoFecha">Fecha</label>
+          <div class="campo-pergamino">
+            <label for="campoFecha">Fecha de la vigilia</label>
             <input type="date" id="campoFecha" name="fecha" required>
           </div>
 
-          <div class="campo">
-            <label for="campoTema">Tema estudiado</label>
-            <input type="text" id="campoTema" name="tema" placeholder="Ej. Funciones en JavaScript, Python, Java..."
+          <div class="campo-pergamino">
+            <label for="campoTema">Tratado o saber dominado</label>
+            <input type="text" id="campoTema" name="tema" placeholder="Ej. Encantamientos en JavaScript, Runas CSS..."
               required>
           </div>
 
-          <div class="campo">
-            <label for="campoMinutos">Tiempo dedicado (minutos)</label>
+          <div class="campo-pergamino">
+            <label for="campoMinutos">Tiempo dedicado (en minutos)</label>
             <input type="number" id="campoMinutos" name="minutos" min="1" placeholder="Ej. 45" required>
           </div>
 
-          <button type="submit" class="boton-guardar" id="botonGuardar">
-            Guardar sesión
+          <button type="submit" class="boton-sellar" id="botonGuardar">
+            <span class="adorno-boton" aria-hidden="true">⚔️</span> Sellar en el Grimorio
           </button>
         </form>
       </section>
 
-      <!-- Lista con el historial de sesiones -->
+      <!-- Crónicas: Historial de sesiones -->
       <section class="seccion-historial">
-        <h2>Historial de sesiones</h2>
+        <div class="cabecera-historial">
+          <span class="espadas-separador" aria-hidden="true">✦ ✦ ✦</span>
+          <h2>Crónica de saberes</h2>
+        </div>
         <div id="listaSesiones" class="lista-sesiones" aria-live="polite">
           <!-- Las sesiones se insertan dinámicamente con app.js -->
         </div>
       </section>
     </main>
+
+    <footer class="pie-grimorio">
+      <p>«La constancia forja el acero del sabio»</p>
+    </footer>
 
   </div>
 </body>

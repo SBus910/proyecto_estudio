@@ -1,21 +1,30 @@
 /* ==========================================================================
-   Variables de diseño y estilos globales
+   GRIMORIO DE ESTUDIO — Estilo Medieval Fantástico
+   Diseñado siguiendo la skill frontend-design
    ========================================================================== */
+
 :root {
-  --color-fondo: #f4f6fb;
-  --color-superficie: #ffffff;
-  --color-primario: #3b82f6;
-  --color-primario-hover: #2563eb;
-  --color-texto: #1e293b;
-  --color-texto-secundario: #64748b;
-  --color-borde: #e2e8f0;
-  --color-racha-fondo: #fff7ed;
-  --color-racha-borde: #ffedd5;
-  --color-racha-texto: #ea580c;
-  --radio-borde: 14px;
-  --sombra-suave: 0 4px 16px rgba(15, 23, 42, 0.05);
-  --sombra-hover: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --fuente: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Paleta cromática: Noche arcana, pergamino antiguo, oro de dragón y bronce */
+  --fondo-abismo: #0f0c08;
+  --fondo-pergamino: #1c160e;
+  --pergamino-interior: #241c12;
+  --pergamino-claro: #2e2417;
+  --borde-hierro: #433320;
+  --borde-dorado: #b8860b;
+  --oro-arcano: #d4af37;
+  --oro-brillante: #f6d860;
+  --tinta-oro: #e8d8b5;
+  --tinta-pergamino: #c7b299;
+  --tinta-apagada: #8c7b68;
+  --fuego-llama: #ff4500;
+  --fuego-resplandor: #ffa500;
+  --rubi-sello: #7a1f1d;
+  --rubi-brillante: #a82c29;
+
+  /* Tipografías medievales */
+  --fuente-titulos: "Cinzel", "Metamorphous", "Times New Roman", serif;
+  --fuente-texto: "MedievalSharp", Georgia, serif;
+  --fuente-runas: "Cinzel", serif;
 }
 
 /* Reset básico */
@@ -26,88 +35,138 @@
 }
 
 body {
-  font-family: var(--fuente);
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
-  line-height: 1.5;
-  padding: 24px 16px 48px;
+  font-family: var(--fuente-texto);
+  background-color: var(--fondo-abismo);
+  /* Textura de fondo con gradientes oscuros que evocan la piedra de un templo antiguo */
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(122, 31, 29, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 90% 85%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #120e09 0%, #0a0805 100%);
+  background-attachment: fixed;
+  color: var(--tinta-pergamino);
+  line-height: 1.6;
+  padding: 32px 16px 64px;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-/* Contenedor centralizado para móvil y escritorio */
-.contenedor {
+/* Marco exterior: El gran códice */
+.pergamino-contenedor {
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
+  position: relative;
 }
 
-/* Encabezado */
-.encabezado {
+/* Encabezado: Titular del Grimorio */
+.encabezado-grimorio {
   text-align: center;
-  padding: 8px 0;
+  padding: 16px 0 8px;
 }
 
-.encabezado h1 {
-  font-size: 1.85rem;
+.emblema-arcano {
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+  color: var(--oro-arcano);
+  margin-bottom: 8px;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+}
+
+.encabezado-grimorio h1 {
+  font-family: var(--fuente-titulos);
+  font-size: 2.25rem;
   font-weight: 800;
-  color: #0f172a;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  color: var(--oro-brillante);
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(212, 175, 55, 0.35);
+  margin-bottom: 6px;
 }
 
 .subtitulo {
-  color: var(--color-texto-secundario);
-  font-size: 0.95rem;
-  margin-top: 4px;
+  color: var(--tinta-apagada);
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
-/* Estilos de las tarjetas */
-.tarjeta {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-borde);
-  padding: 24px;
-  box-shadow: var(--sombra-suave);
+/* Tarjetas: Relicarios de pergamino oscuro reforzados con hierro y oro */
+.tarjeta-relicario {
+  background: 
+    linear-gradient(145deg, rgba(40, 31, 20, 0.92) 0%, rgba(24, 18, 11, 0.96) 100%);
+  border: 2px solid var(--borde-hierro);
+  border-radius: 4px;
+  padding: 24px 22px;
+  position: relative;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.2),
+    inset 0 0 24px rgba(0, 0, 0, 0.6);
 }
 
-/* Tarjeta destacada de Rachas (Actual y Mejor racha) */
+/* Esquinas heráldicas decorativas mediante pseudo-elementos */
+.tarjeta-relicario::before,
+.tarjeta-relicario::after {
+  content: "✦";
+  position: absolute;
+  font-size: 0.75rem;
+  color: var(--oro-arcano);
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+  pointer-events: none;
+}
+.tarjeta-relicario::before {
+  top: 4px;
+  left: 6px;
+}
+.tarjeta-relicario::after {
+  bottom: 4px;
+  right: 6px;
+}
+
+/* 1. Tarjeta de Rachas: El Fuego Sagrado y la Copa de Gloria */
 .tarjeta-rachas {
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 16px;
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  border: 1px solid var(--color-racha-borde);
-  padding: 24px 16px;
-  text-align: center;
+  background: 
+    radial-gradient(circle at 25% 50%, rgba(255, 69, 0, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 75% 50%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+    linear-gradient(145deg, #2b1f13 0%, #171109 100%);
+  border-color: #5a4023;
+  padding: 26px 18px;
 }
 
 .bloque-racha {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
   flex: 1;
 }
 
-.divisor-racha {
-  width: 1px;
-  height: 60px;
-  background-color: rgba(234, 88, 12, 0.2);
+.reja-divisoria {
+  width: 2px;
+  height: 64px;
+  background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.4), transparent);
 }
 
-.icono-racha {
-  font-size: 3rem;
+.icono-reliquia {
+  font-size: 3.2rem;
   line-height: 1;
-  filter: drop-shadow(0 4px 8px rgba(234, 88, 12, 0.2));
-  animation: pulsoSuave 2.5s infinite ease-in-out;
 }
 
-.icono-mejor-racha {
-  filter: drop-shadow(0 4px 8px rgba(202, 138, 4, 0.25));
-  animation: none;
+.llama-arcana {
+  filter: drop-shadow(0 0 14px rgba(255, 69, 0, 0.65));
+}
+
+.caliz-gloria {
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.5));
 }
 
 .contenido-racha {
@@ -116,139 +175,263 @@ body {
   align-items: flex-start;
 }
 
-.etiqueta-racha {
+.etiqueta-relicario {
+  font-family: var(--fuente-titulos);
   font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--color-racha-texto);
+  color: var(--oro-arcano);
 }
 
-.numero-racha {
-  font-size: 2.75rem;
+.numero-runa {
+  font-family: var(--fuente-runas);
+  font-size: 3rem;
   font-weight: 900;
   line-height: 1.05;
-  color: #9a3412;
+  color: var(--fuego-resplandor);
+  text-shadow: 
+    0 0 18px rgba(255, 69, 0, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.9);
   margin: 2px 0;
 }
 
-.numero-mejor-racha {
-  color: #b45309;
+.numero-gloria {
+  color: var(--oro-brillante);
+  text-shadow: 
+    0 0 18px rgba(212, 175, 55, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .texto-dias {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #c2410c;
+  font-size: 0.95rem;
+  color: var(--tinta-pergamino);
+  font-style: italic;
 }
 
-/* Formulario */
-.tarjeta-formulario h2 {
-  font-size: 1.25rem;
+/* 2. Tarjeta de Estadísticas Arcanas */
+.tarjeta-estadisticas {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  padding: 20px 16px;
+  background: 
+    linear-gradient(180deg, rgba(35, 27, 17, 0.95) 0%, rgba(22, 16, 9, 0.95) 100%);
+}
+
+.item-estadistica {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.icono-grimorio {
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.datos-estadistica {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.valor-runico {
+  font-family: var(--fuente-runas);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--tinta-oro);
+  line-height: 1.15;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* 3. Pupitre de Escritura: Formulario */
+.cabecera-tomo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--borde-hierro);
+  padding-bottom: 12px;
+}
+
+.cabecera-tomo h2 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 18px;
-  color: #0f172a;
+  letter-spacing: 0.04em;
+  color: var(--oro-arcano);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+.floron {
+  color: var(--oro-arcano);
+  font-size: 1.1rem;
 }
 
 #formularioSesion {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
-.campo {
+.campo-pergamino {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-.campo label {
-  font-size: 0.875rem;
+.campo-pergamino label {
+  font-family: var(--fuente-titulos);
+  font-size: 0.88rem;
   font-weight: 600;
-  color: #334155;
+  letter-spacing: 0.04em;
+  color: var(--tinta-oro);
 }
 
-.campo input {
-  font-family: inherit;
-  font-size: 0.95rem;
-  padding: 10px 14px;
-  border: 1.5px solid var(--color-borde);
-  border-radius: 8px;
-  background-color: #fff;
-  color: var(--color-texto);
+.campo-pergamino input {
+  font-family: var(--fuente-texto);
+  font-size: 1.05rem;
+  padding: 12px 14px;
+  border: 1.5px solid var(--borde-hierro);
+  border-radius: 3px;
+  background-color: #120d07;
+  color: var(--oro-brillante);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
-.campo input:focus {
-  border-color: var(--color-primario);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+.campo-pergamino input:focus {
+  border-color: var(--oro-arcano);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(212, 175, 55, 0.3);
 }
 
-.campo input::placeholder {
-  color: #94a3b8;
+.campo-pergamino input::placeholder {
+  color: #6a5742;
+  font-style: italic;
 }
 
-/* Botón de guardar */
-.boton-guardar {
-  font-family: inherit;
-  background-color: var(--color-primario);
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 18px;
+/* Personalización del selector nativo de fecha en modo oscuro */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
-  margin-top: 4px;
 }
 
-.boton-guardar:hover {
-  background-color: var(--color-primario-hover);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+/* Botón Sello de Cera / Batalla */
+.boton-sellar {
+  font-family: var(--fuente-titulos);
+  background: 
+    linear-gradient(180deg, var(--rubi-brillante) 0%, var(--rubi-sello) 100%);
+  color: var(--oro-brillante);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border: 1.5px solid #d4af37;
+  border-radius: 4px;
+  padding: 14px 22px;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  margin-top: 6px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.boton-guardar:active {
-  transform: scale(0.98);
+.boton-sellar:hover {
+  background: linear-gradient(180deg, #bc3330 0%, #872321 100%);
+  border-color: #ffd700;
+  box-shadow: 
+    0 6px 20px rgba(168, 44, 41, 0.4),
+    0 0 15px rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
 }
 
-/* Sección de historial */
+.boton-sellar:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.adorno-boton {
+  font-size: 1.15rem;
+}
+
+/* 4. Crónica de Saberes: Lista de Sesiones */
 .seccion-historial {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
-.seccion-historial h2 {
-  font-size: 1.25rem;
+.cabecera-historial {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.espadas-separador {
+  color: var(--oro-arcano);
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+  display: block;
+  margin-bottom: 4px;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+.cabecera-historial h2 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #0f172a;
+  letter-spacing: 0.05em;
+  color: var(--tinta-oro);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .lista-sesiones {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
-/* Tarjeta individual de sesión */
+/* Pergamino individual para cada sesión */
 .item-sesion {
-  background-color: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: 12px;
-  padding: 16px 18px;
-  box-shadow: var(--sombra-suave);
+  background: 
+    linear-gradient(135deg, rgba(38, 29, 18, 0.95) 0%, rgba(24, 18, 11, 0.98) 100%);
+  border: 1.5px solid var(--borde-hierro);
+  border-left: 4px solid var(--borde-dorado);
+  border-radius: 3px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.6),
+    inset 0 0 14px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  position: relative;
 }
 
 .item-sesion:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-hover);
+  transform: translateX(4px);
+  border-color: #6e522f;
+  border-left-color: var(--oro-brillante);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(212, 175, 55, 0.15);
 }
 
 .info-sesion {
@@ -258,90 +441,142 @@ body {
 }
 
 .tema-sesion {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #0f172a;
+  font-family: var(--fuente-titulos);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--tinta-oro);
   word-break: break-word;
+  letter-spacing: 0.02em;
 }
 
 .fecha-sesion {
-  font-size: 0.85rem;
-  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+  color: var(--tinta-apagada);
+  font-style: italic;
 }
 
+/* Sello de tiempo consagrado */
 .tiempo-sesion {
-  background-color: #eff6ff;
-  color: #1d4ed8;
+  font-family: var(--fuente-runas);
+  background: rgba(184, 134, 11, 0.12);
+  color: var(--oro-brillante);
+  border: 1px solid rgba(212, 175, 55, 0.35);
   font-weight: 700;
-  font-size: 0.875rem;
-  padding: 6px 12px;
-  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 2px;
   white-space: nowrap;
+  letter-spacing: 0.03em;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Estado vacío cuando no hay sesiones */
+/* Pergamino vacío */
 .estado-vacio {
-  background-color: var(--color-superficie);
-  border: 1.5px dashed var(--color-borde);
-  border-radius: 12px;
-  padding: 32px 20px;
+  background: rgba(28, 22, 14, 0.7);
+  border: 1.5px dashed var(--borde-hierro);
+  border-radius: 4px;
+  padding: 36px 20px;
   text-align: center;
-  color: var(--color-texto-secundario);
-  font-size: 0.95rem;
+  color: var(--tinta-apagada);
+  font-size: 1.05rem;
+  font-style: italic;
 }
 
-/* Animación sutil de la llama */
+/* Pie del Grimorio */
+.pie-grimorio {
+  text-align: center;
+  padding: 12px 0 0;
+  color: #68553f;
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* Animación sutil de la llama sagrada */
 @keyframes pulsoSuave {
   0%, 100% {
     transform: scale(1);
+    filter: drop-shadow(0 0 14px rgba(255, 69, 0, 0.65));
   }
   50% {
     transform: scale(1.08);
+    filter: drop-shadow(0 0 22px rgba(255, 140, 0, 0.85));
   }
 }
 
-/* Ajustes adaptables para pantallas muy pequeñas */
+.llama-arcana {
+  animation: pulsoSuave 3s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   Adaptabilidad Móvil (< 480px)
+   ========================================================================== */
 @media (max-width: 480px) {
   body {
-    padding: 16px 12px 36px;
+    padding: 20px 10px 48px;
   }
 
-  .encabezado h1 {
-    font-size: 1.5rem;
+  .encabezado-grimorio h1 {
+    font-size: 1.75rem;
   }
 
-  .tarjeta {
-    padding: 18px 16px;
+  .subtitulo {
+    font-size: 0.92rem;
+  }
+
+  .tarjeta-relicario {
+    padding: 18px 14px;
   }
 
   .tarjeta-rachas {
-    flex-direction: row;
     gap: 8px;
-    padding: 16px 10px;
+    padding: 18px 10px;
   }
 
   .bloque-racha {
-    gap: 8px;
+    gap: 10px;
   }
 
-  .divisor-racha {
+  .reja-divisoria {
     height: 48px;
   }
 
-  .icono-racha {
-    font-size: 2.25rem;
+  .icono-reliquia {
+    font-size: 2.2rem;
   }
 
-  .numero-racha {
-    font-size: 2.1rem;
+  .numero-runa {
+    font-size: 2.2rem;
   }
 
-  .etiqueta-racha {
-    font-size: 0.72rem;
+  .etiqueta-relicario {
+    font-size: 0.68rem;
   }
 
   .texto-dias {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .tarjeta-estadisticas {
+    padding: 14px 6px;
+    gap: 4px;
+  }
+
+  .item-estadistica {
+    gap: 6px;
+  }
+
+  .icono-grimorio {
+    font-size: 1.35rem;
+  }
+
+  .valor-runico {
+    font-size: 1.15rem;
+  }
+
+  .boton-sellar {
+    font-size: 0.98rem;
+    padding: 12px 16px;
   }
 
   .item-sesion {

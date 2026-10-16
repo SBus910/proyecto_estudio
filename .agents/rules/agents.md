@@ -16,11 +16,14 @@ Convenciones
 Textos de la interfaz en español.
 Código simple, nombres descriptivos y comentarios solo donde aporten.
 Diseño limpio y responsive; cualquier pantalla nueva debe verse bien en el móvil.
-Datos
-localStorage, clave diario-estudio-sesiones: array de { date: "AAAA-MM-DD", topic, minutes }.
+Datos y métricas
+localStorage, clave diario-estudio-sesiones: array de { id, fecha, tema, minutos }.
 Si cambias la forma de los datos, mantén compatibilidad con lo ya guardado o el usuario
 perderá sus sesiones.
+Las métricas (racha actual, mejor racha histórica, tiempo total y total de sesiones) se calculan
+siempre en tiempo de ejecución a partir de las sesiones guardadas.
 Fechas y racha (fácil equivocarse)
+Consulta siempre la skill `local-dates` (`.agents/skills/local-dates/SKILL.md`) antes de tocar cualquier lógica de fechas.
 Trabaja siempre con la fecha local del usuario. Nunca uses toISOString() ni new Date("AAAA-MM-DD"): se interpretan en UTC y desplazan el día.
 Racha = días consecutivos con al menos 1 sesión que terminan hoy. Si hoy no hay sesión
 pero ayer sí, la racha sigue viva y se cuenta desde ayer.
